@@ -1,0 +1,56 @@
+services:
+  warehouse:
+    image: postgres13
+    environment:
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: root
+      POSTGRES_DB: source
+    volumes:
+      - ./postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U root -d source"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start-time: 10s
+
+  warehouseui:
+    image: dpage/pgadmin4
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@example.com
+      PGADMIN_DEFAULT_PASSWORD: root
+    volumes:
+      - ./pgadmin_data:/var/lib/pgadmin
+    ports:
+      - "8085:80"
+    depends_on:
+      warehouse:
+        condition: service_healthy
+
+  scheduler:
+    image: mageai/mageai
+    volumes:
+      - ./mage_data:/home/src
+    ports:
+      - "6789:6789"
+    command: /app/run_app.sh mage start scheduler
+    depends_on:
+      warehouse:
+        condition: service_healthy
+
+  spark_notebook:
+    build: .
+    environment:
+      - PYSPARK_PYTHON: python
+      - PYSPARK_DRIVER_PYTHON: python
+    volumes:
+      - ./notebook_data:/workspace/notebooks
+      - ./data:/workspace/data
+    ports:
+      - "8888:8888"
+      - "4040:4040"
+    depends_on:
+      warehouse:
+        condition: service_healthy
