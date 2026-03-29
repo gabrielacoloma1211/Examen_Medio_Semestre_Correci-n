@@ -1,6 +1,6 @@
 services:
   warehouse:
-    image: postgres13
+    image: postgres:13
     environment:
       POSTGRES_USER: root
       POSTGRES_PASSWORD: root
@@ -14,7 +14,7 @@ services:
       interval: 30s
       timeout: 5s
       retries: 3
-      start-time: 10s
+      start_period: 10s
 
   warehouseui:
     image: dpage/pgadmin4
@@ -43,8 +43,8 @@ services:
   spark_notebook:
     build: .
     environment:
-      - PYSPARK_PYTHON: python
-      - PYSPARK_DRIVER_PYTHON: python
+      - PYSPARK_PYTHON=python           
+      - PYSPARK_DRIVER_PYTHON=python  
     volumes:
       - ./notebook_data:/workspace/notebooks
       - ./data:/workspace/data
