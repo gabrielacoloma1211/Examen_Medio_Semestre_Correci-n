@@ -8,25 +8,25 @@ def data_loader(*args, **kwargs):
     chunk_size = kwargs.get("chunk_size", 100000)
     url = kwargs.get("url")
 
-    #reintentos
+    # reintentos
+    df = None
     for attempt in range(1, retries + 1):
         try:
             df = pd.read_parquet(url)
             break
         except Exception as e:
-            if attempt < retries - 1:
+            if attempt == retries:          
                 raise RuntimeError(
                     f"No se pudo leer el archivo después de {retries} intentos"
                 ) from e
-            time.sleep(1)
-    #chunking
-    total_chunks = math.ceil(len(df)/chunk_size
-    chunks = []
+            time.sleep(1)                   
 
+    # chunking
+    total_chunks = math.ceil(len(df) / chunk_size)   
+    chunks = []
     for i in range(total_chunks):
         start = i * chunk_size
         end = start + chunk_size
-
         chunk = df.iloc[start:end].copy()
         chunks.append(chunk)
 
