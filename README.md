@@ -78,4 +78,4 @@ escribiendo el particionamiento solo de Enero-Febrero 2025.
 ---
 
 ## Examen Teórico
-**Respuesta:** [`Corrección_Teórica_Examen_Medio.pdf`](Corrección_Teórica_Examen_Medio.pdf)
+**Respuesta:** [`Correción_Teoríca_Examen_Medio_Semestre.pdf`](Correción_Teoríca_Examen_Medio_Semestre.pdf)
