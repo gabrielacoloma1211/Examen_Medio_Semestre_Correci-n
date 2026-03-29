@@ -24,7 +24,7 @@ La empresa tiene 25 millones de clientes en todo USA, aproximadamente 10 TB de d
 Escribir el `docker-compose.yml` para levantar la infraestructura que se implementaría
 para la empresa.
 
-**Respuesta:** [`docker-compose.yml`](docker-compose.yml)
+**Respuesta:** [`docker-compose.yml`](Practica/docker-compose.yml)
 
 ---
 
@@ -32,7 +32,7 @@ para la empresa.
 Crear un data loader genérico para traer los datos de las tablas de la BD con
 **reintentos y chunking**. Todo lo que se necesita asumir que ya son variables definidas.
 
-**Respuesta:** [`data_loader.py`](data_loader.py)
+**Respuesta:** [`data_loader.py`](Practica/data_loader.py)
 
 ---
 
@@ -41,7 +41,7 @@ Crear el diagrama ERD de modelamiento dimensional que se implementa para la capa
 (nombre de las tablas, columnas, relaciones, con esquema de estrella).
 La tabla de hechos debe unificar todos los servicios.
 
-**Respuesta:** [`diagrama_ERD_gold.md`](diagrama_ERD_gold.md)
+**Respuesta:** [`diagrama_ERD_gold.md`](Practica/diagrama_ERD_gold.md)
 
 ---
 
@@ -53,7 +53,7 @@ Supuestos:
 - Se tiene un archivo `sources.yml` con el source para la tabla de planes y usuarios
 - Ya se tienen modelos en silver para cada tabla: `stg_calls`, `stg_internet`, `stg_messages`
 
-**Respuesta:** [`fct_eventos.sql`](fct_eventos.sql)
+**Respuesta:** [`fct_eventos.sql`](Practica/fct_eventos.sql)
 
 ---
 
@@ -65,7 +65,7 @@ Supuestos:
 - Usar la tabla de hechos y dimensiones para calcular
 - La tabla de hechos tiene datos desde 2015 hasta la actualidad
 
-**Respuesta:** [`PySpark.py`](PySpark.py)
+**Respuesta:** [`PySpark.py`](Practica/PySpark.py)
 
 ---
 
@@ -73,7 +73,7 @@ Supuestos:
 Escribir el código SQL para crear la tabla de hechos y el código para particionar,
 escribiendo el particionamiento solo de Enero-Febrero 2025.
 
-**Respuesta:** [`fct_eventos.sql`](fct_eventos.sql)
+**Respuesta:** [`create_partitions.sql`](Practica/create_partitions.sql)
 
 ---
 
